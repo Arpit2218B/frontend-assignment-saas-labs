@@ -50,6 +50,7 @@ const PaginatedTable = () => {
           className="pagination-dropdown"
           value={currentPage}
           onChange={(e) => handlePageChange(Number(e.target.value))}
+          disabled={loading}
         >
           {Array.from({ length: totalPages }, (_, index) => (
             <option key={index + 1} value={index + 1}>
@@ -58,7 +59,7 @@ const PaginatedTable = () => {
           ))}
         </select>
         <span>of</span>
-        <span>{totalPages} pages</span>
+        <span>{loading ? 'xx' : totalPages} pages</span>
         <button
           className="pagination-button"
           disabled={currentPage === 1}
@@ -69,7 +70,7 @@ const PaginatedTable = () => {
 
         <button
           className="pagination-button"
-          disabled={currentPage === totalPages}
+          disabled={currentPage === totalPages || loading}
           onClick={() => handlePageChange(currentPage + 1)}
         >
           &gt;

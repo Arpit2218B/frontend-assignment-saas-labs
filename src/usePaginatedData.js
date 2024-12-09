@@ -17,7 +17,9 @@ const usePaginatedData = (itemsPerPage) => {
         ).then((r) => r.json());
         setData(response);
         setTotalPages(Math.ceil(response.length / itemsPerPage));
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1500);
       } catch (error) {
         console.error('Error fetching data:', error);
         setLoading(false);
